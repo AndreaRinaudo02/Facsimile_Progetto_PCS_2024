@@ -1,0 +1,43 @@
+@startuml
+
+'commento
+
+package GeometryLibrary <<Folder>>  'namespace
+
+{
+
+class Triangle      'class crea classe
+{
++ Vertices : Matrix3d     '+ pubblico
++ Triangle(Vertices)
++ double computeArea()
+}
+
+class Polygons
+{
++ Vertices : MatrixXd      'attributo   (?)
++ listPolygons : vector<vector<unsigned int>>     'metodi (?)
++ vector<vector<vector<unsigned int>>> computeTriangolation()
++ vector<double> computeArea
++ void gedimInterface(vector<vector<unsigned int>>&)      'output
+..Non member function..
+void importPolygons(path, polygons)
+..TEST POLYGONS..
+TESTCOMPUTE
+TESTTRIANGULATION
+}
+
+}
+
+package Gedim <<Frame>>
+{
+}
+note "Gedim è una libreria estrerna" as GedimN
+GedimN .rigth. Gedim                                     'crea nota
+
+Gedim ..> Polygons::gedimInterface
+
+'.. linea tratt. con __ linea dritta
+Triangle "many" __o "1" Polygons : è fatto da
+
+@enduml
